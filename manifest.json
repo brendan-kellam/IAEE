@@ -2,11 +2,17 @@
     "name": "IAEE",
     "version": "1.0",
     "description": "Build an Extension!",
-    "permissions": ["declarativeContent", "storage"],
+    "permissions": [
+        "declarativeContent", 
+        "storage",
+        "tabs",
+        "http://*/",
+        "https://*/"
+    ],
     
     "background": {
         "scripts": ["thirdParty/jquery-3.4.1.js", "background.js"],
-        "persistent": false
+        "persistent": true
       },
     "page_action": {
         "default_popup": "popup.html"
