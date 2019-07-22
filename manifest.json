@@ -3,8 +3,9 @@
     "version": "1.0",
     "description": "Build an Extension!",
     "permissions": ["declarativeContent", "storage"],
+    
     "background": {
-        "scripts": ["background.js"],
+        "scripts": ["thirdParty/jquery-3.4.1.js", "background.js"],
         "persistent": false
       },
     "page_action": {
