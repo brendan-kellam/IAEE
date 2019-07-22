@@ -1,9 +1,6 @@
-alert("Hello world");
-
-var images = $('.thumbnailArrows').children('img').map(function(){
-    return $(this).attr('src')
-}).get()
-
-alert(images);
+var images = new Array();
+$("img").each(function(){
+images.push($(this).attr('src'));
+})
 
 chrome.runtime.sendMessage(images);
