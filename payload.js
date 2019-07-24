@@ -1,36 +1,27 @@
-var images = new Array();
-    $("img").each(function(){
-        var imgSrc = $(this).attr('src');
-        images.push(imgSrc);
-        if (/^(.*)(\.png|\.jpg|\.jpeg)$/.test(imgSrc))
-        {
-            //$(this).attr('alt', $(this).attr('alt') + '. Hello world!');
-
-            alert($(this).width());
-
+chrome.extension.onMessage.addListener(function(msg, sender, sendResponse) {
+    if (msg.action == "describe_images") {
+        console.log("Describing images...");
+        
+        $("img").each(function() {
+            var imgSrc = $(this).attr("src");
             if ($(this).width() > 50 && $(this).height() > 50)
             {
-                alert("here");
-                CognitiveServicesAPI.getImageDescription($(this), function(firstCaption, imgRet)
-                {
-                    alert(firstCaption);
-                    imgRet.attr('alt', imgRet.attr('alt') + '. ' + firstCaption);
-                }, 
-                function(ErrorMsg)
-                {
-                    alert(ErrorMsg);
-                });
+                CognitiveServicesAPI.getImageDescription($(this),
+                    function(firstCaption, imgRet)
+                    {
+                        imgRet.attr("alt", (imgRet.attr('alt') || "") + ". " + firstCaption);
+                        console.log(firstCaption);
+                    },
+                    function(errorMsg)
+                    {
+                        console.log(errorMsg)
+                    }
+                );
             }
-        }
+        });
         
-        // CognitiveServicesAPI.getImageDescription(imgSrc, function(firstCaption)
-        // {
-        //     alert(firstCaption);
-        // }, 
-        // function(ErrorMsg)
-        // {
-        //     alert(ErrorMsg);
-        // });
-})
+        sendResponse("Done");
+    }
+});
 
-chrome.runtime.sendMessage(images);
+var images = new Array();

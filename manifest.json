@@ -1,7 +1,8 @@
 {
+    "manifest_version": 2,
     "name": "IAEE",
     "version": "1.0",
-    "description": "Build an Extension!",
+    "description": "TODO",
     "permissions": [
         "declarativeContent", 
         "storage",
@@ -9,19 +10,17 @@
         "http://*/",
         "https://*/"
     ],
-    
+    "browser_action": {
+        "name": "IAEE"
+    },
     "background": {
-        "scripts": ["thirdparty/jquery-3.4.1.js", "background.js"],
+        "scripts": ["background.js"],
         "persistent": true
     },
     "content_scripts": [
         {
-          "matches": ["http://*/*","https://*/*"],
+          "matches": ["http://*/*","https://*/*", "file://*/*"],
           "js": ["thirdparty/jquery-3.4.1.js", "js/cognitive-services-api.js", "payload.js"]
         }
-    ],
-    "page_action": {
-        "default_popup": "popup.html"
-    },
-    "manifest_version": 2
+    ]
   } 
