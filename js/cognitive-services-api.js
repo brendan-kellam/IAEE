@@ -11,12 +11,32 @@ var CognitiveServicesAPI = new function()
 
     this.getImageDescription = function (image, onSuccess, onError)
     {
+        var imgSrc = image.attr('src');
+        var requestData = '{"url": ' + '"' + imgSrc + '"}';
+        var requestContentType = "application/json";
+        if (imgSrc.startsWith("data:image/jpeg;base64"))
+        {
+            requestContentType = "application/octet-stream";
+
+            var base64data = imgSrc.substring(imgSrc.indexOf(",") + 1);
+            const byteCharacters = atob(base64data);
+
+            const byteNumbers = new Array(byteCharacters.length);
+            for (let i = 0; i < byteCharacters.length; i++)
+            {
+                byteNumbers[i] = byteCharacters.charCodeAt(i);
+            }
+
+            const byteArray = new Uint8Array(byteNumbers);
+            var requestData = new Blob([byteArray], {type: "image/jpeg"});
+        }
+
         $.ajax({
             url: URI_BASE + "?" + $.param(PARAMS),
             
             // Request headers.
             beforeSend: function(xhrObj){
-                xhrObj.setRequestHeader("Content-Type","application/json");
+                xhrObj.setRequestHeader("Content-Type",requestContentType);
                 xhrObj.setRequestHeader(
                     "Ocp-Apim-Subscription-Key", CognitiveServicesAPI.API_KEY);
             },
@@ -24,7 +44,8 @@ var CognitiveServicesAPI = new function()
             type: "POST",
 
             // Request body.
-            data: '{"url": ' + '"' + image.attr('src') + '"}',
+            data: requestData,
+            processData: false
         })
 
         .done(function(data) {
