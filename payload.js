@@ -25,7 +25,7 @@ chrome.extension.onMessage.addListener(function(msg, sender, sendResponse) {
                         if ($(this).width() > 50 && $(this).height() > 50)
                         {
                             console.log("Sending Cognitive Services API request");
-                            describedImages.push(imgRet[0]);
+                            describedImages.push($(this)[0]);
 
                             CognitiveServicesAPI.getImageDescription($(this),
                                 function(firstCaption, imgRet)
