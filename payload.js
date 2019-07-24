@@ -59,8 +59,10 @@ chrome.extension.onMessage.addListener(function(msg, sender, sendResponse) {
                                     // imgRet.attr("alt", (imgRet.attr('alt') || "") + ". " + firstCaption);
                                     imgRet.attr("alt", firstCaption);
                                     console.log(firstCaption);
-                                    realFocus = true;
-                                    $(imgRet).parent().focus();
+                                    setTimeout(function() {
+                                        realFocus = true;
+                                        $(imgRet).parent().focus();
+                                    }, 1000);
                                 },
                                 function(errorMsg)
                                 {
