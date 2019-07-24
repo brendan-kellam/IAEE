@@ -20,6 +20,7 @@ var inject = function()
                 $(this).wrap("<a class='IAEE' href=''></a>");
             }
         }
+        $(this).attr("alt", "");
     });
     
     $(".IAEE").on({
@@ -62,7 +63,7 @@ var inject = function()
                                 setTimeout(function() {
                                     realFocus = true;
                                     $(imgRet).parent().focus();
-                                }, 1500);
+                                }, 100);
                             },
                             function(errorMsg)
                             {
