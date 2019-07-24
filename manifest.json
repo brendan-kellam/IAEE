@@ -22,5 +22,8 @@
           "matches": ["http://*/*","https://*/*", "file://*/*"],
           "js": ["thirdparty/jquery-3.4.1.js", "js/cognitive-services-api.js", "payload.js"]
         }
-    ]
+    ],
+    "icons": {
+        "128": "icon128.png"
+    }
   } 
