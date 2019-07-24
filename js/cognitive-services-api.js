@@ -1,6 +1,6 @@
 var CognitiveServicesAPI = new function()
 {
-    this.API_KEY = "";
+    this.API_KEY = "1cdddeac21274c66a7e5e9ea435af458";
     var URI_BASE = "https://westcentralus.api.cognitive.microsoft.com/vision/v2.0/analyze";
 
     var PARAMS = {
@@ -9,7 +9,7 @@ var CognitiveServicesAPI = new function()
         "language": "en",
     };
 
-    this.getImageDescription = function (imageUrl, onSuccess, onError)
+    this.getImageDescription = function (image, onSuccess, onError)
     {
         $.ajax({
             url: URI_BASE + "?" + $.param(PARAMS),
@@ -24,7 +24,7 @@ var CognitiveServicesAPI = new function()
             type: "POST",
 
             // Request body.
-            data: '{"url": ' + '"' + imageUrl + '"}',
+            data: '{"url": ' + '"' + image.attr('src') + '"}',
         })
 
         .done(function(data) {
@@ -33,7 +33,7 @@ var CognitiveServicesAPI = new function()
             if (captions.length > 0)
             {
                 var firstCaption = captions[0]["text"];
-                onSuccess(firstCaption);
+                onSuccess(firstCaption, image);
             }
             else
             {

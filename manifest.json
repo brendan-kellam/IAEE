@@ -17,7 +17,7 @@
     "content_scripts": [
         {
           "matches": ["http://*/*","https://*/*"],
-          "js": ["thirdparty/jquery-3.4.1.js", "payload.js"]
+          "js": ["thirdparty/jquery-3.4.1.js", "js/cognitive-services-api.js", "payload.js"]
         }
     ],
     "page_action": {
