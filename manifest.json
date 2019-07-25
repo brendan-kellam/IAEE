@@ -1,8 +1,8 @@
 {
     "manifest_version": 2,
-    "name": "IAEE",
+    "name": "A Thousand Words",
     "version": "1.0",
-    "description": "TODO",
+    "description": "Making images accessible to all",
     "permissions": [
         "declarativeContent", 
         "storage",
@@ -11,7 +11,7 @@
         "https://*/"
     ],
     "browser_action": {
-        "name": "IAEE"
+        "name": "A Thousand Words"
     },
     "background": {
         "scripts": ["background.js"],
